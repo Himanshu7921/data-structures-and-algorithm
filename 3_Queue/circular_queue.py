@@ -148,7 +148,7 @@ if __name__ == "__main__":
     circular_queue.enqueue(50)
     circular_queue.enqueue(60)
     circular_queue.enqueue(70)
-    circular_queue.print_queue()  # 30 40 50 60
+    circular_queue.print_queue()  # 30 40 50 60 70
     circular_queue.dequeue()
     circular_queue.enqueue(80)
-    circular_queue.print_queue()  # 30 40 50 60
+    circular_queue.print_queue()  # 40 50 60 70 80
