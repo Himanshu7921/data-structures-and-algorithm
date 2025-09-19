@@ -39,7 +39,7 @@ class LinearLinkedListQueue:
 
     Complexity Overview:
         - Enqueue: O(1) (insert at rear)
-        - Dequeue: O(n) (traverse to remove front)
+        - Dequeue: O(1) (remove from front)
         - Print Queue: O(n)
         - Space Complexity: O(n) (one node object per element)
     """
@@ -72,7 +72,7 @@ class LinearLinkedListQueue:
             self.rear = self.front = new_node
             print(f"Inserted 1st Element into the Queue: {data}")
         else:
-            new_node.next = self.rear
+            self.rear.next = new_node
             self.rear = new_node
             print(f"Inserted new Element into the Queue: {data}")
 
@@ -81,7 +81,7 @@ class LinearLinkedListQueue:
         Remove the front element from the Queue.
 
         Time Complexity:
-            - O(n): Traverses the list to find the node before front.
+            - O(1): Directly removes the front node.
         Space Complexity:
             - O(1): No extra space used.
 
@@ -95,58 +95,48 @@ class LinearLinkedListQueue:
             print("Queue is Empty, nothing to dequeue")
             return -1
 
-        # Case: Only one element in the Queue
-        if self.rear == self.front:
-            popped_val = self.front.data
-            print(f"Popped {popped_val} from the Queue")
-            self.front = self.rear = None
-            return popped_val
-
-        # Case: More than one element
-        dummy = self.rear
-        while dummy.next != self.front:  # Traverse to node before front
-            dummy = dummy.next
         popped_val = self.front.data
+        self.front = self.front.next
         print(f"Popped {popped_val} from the Queue")
-        dummy.next = None
-        self.front = dummy
         return popped_val
+
+        
 
     def print_queue(self):
         """
-        Print all elements of the Queue from rear to front.
+        Print all elements of the Queue from front to rear in a visual format.
 
         Time Complexity:
             - O(n): Traverses the list once.
         Space Complexity:
             - O(1): No extra space used.
 
-        Returns:
-            -1 if the Queue is empty, otherwise None.
-
         Example Output:
-            Queue Elements: 40 30 20 10
-            OR
-            Queue is Empty, nothing to print
+            Front                           Rear
+            |                               |
+            v                               v
+            10 -> 20 -> 30 -> 40 -> None
         """
-        if self.front and self.rear:
-            temp = self.rear
-            
-
-            print("Queue Elements: ", end=" ")
-            while temp:
-                if temp == self.rear:
-                    print("'(self.rear)' -> ", end=" ")
-                print(f"{temp.data}", end=" ")
-                if temp == self.front:
-                    print("-> '(self.front)'", end=" ")
-                
-                temp = temp.next
-                
-            print()
-        else:
+        if not self.front:
             print("Queue is Empty, nothing to print")
             return -1
+
+        # Print front and rear pointers
+        print(f"{'Front':<30}{'Rear'}")
+        print(f"{'  |':<30}{'  |'}")
+        print(f"{'  v':<30}{'  v'}")
+
+        # Print the queue elements
+        temp = self.front
+        while temp:
+            print(f"{temp.data}", end="")
+            if temp.next:
+                print(" -> ", end="")
+            else:
+                print(" -> None", end="")
+            temp = temp.next
+        print("\n")
+
 
 
 # ===============================
