@@ -155,7 +155,7 @@ if __name__ == "__main__":
     # Dequeue elements
     queue.dequeue()  # Popped 10 from the Queue
     queue.dequeue()  # Popped 20 from the Queue
-    queue.print_queue()  # Queue Elements:  '(self.rear)' ->  40 30 -> '(self.front)'
+    queue.print_queue()
     queue.dequeue()  # Popped 30 from the Queue
     queue.dequeue()  # Popped 40 from the Queue
     queue.print_queue()  # Queue is Empty, nothing to print
