@@ -100,6 +100,37 @@ class HashSet:
                     elements.append(element)
         print(", ".join(elements), end="")
         print("}")
+    
+    # ===============================
+    # DELETION METHOD
+    # ===============================
+    def remove(self, val):
+        """
+        Delete a value from the HashSet if it exists.
+
+        Time Complexity:
+            - Average Case: O(1)
+            - Worst Case: O(n) if bucket is large due to collisions.
+        Space Complexity:
+            - O(1)
+
+        Args:
+            val (str): The value to delete.
+
+        Returns:
+            bool: True if deletion was successful, False otherwise.
+
+        Example:
+            del hashset["abc"]
+        """
+        hash_val = self.get_hash(val)
+        bucket = self.arr[hash_val]
+
+        for idx, element in enumerate(bucket):
+            if element == val:
+                del bucket[idx]
+                return True
+        return False
 
 
 # ===============================
@@ -114,9 +145,21 @@ if __name__ == "__main__":
     hashset.append("xyz")
     hashset.append("yzx")  # collision with "xyz", still handled
 
+    # Print HashSet
+    print("Initial HashSet:")
     hashset.print_hashset()  # {abc, cab, xyz, yzx}
-    
+
+    # Print hash values of inserted elements
     print(f"Hash of 'abc' = {hashset.get_hash('abc')}")
     print(f"Hash of 'cab' = {hashset.get_hash('cab')}")
     print(f"Hash of 'xyz' = {hashset.get_hash('xyz')}")
     print(f"Hash of 'yzx' = {hashset.get_hash('yzx')}")
+
+    # Delete an element
+    print("\nDeleting 'cab'...")
+    result = hashset.remove("cab")
+    print("Deleted successfully!" if result else "Value not found.")
+
+    # Print HashSet after deletion
+    print("HashSet after deletion:")
+    hashset.print_hashset()  # {abc, xyz, yzx}
