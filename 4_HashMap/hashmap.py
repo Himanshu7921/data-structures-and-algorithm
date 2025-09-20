@@ -30,7 +30,7 @@ class HashMap:
         - Space Complexity: O(n), where n is the number of key-value pairs.
     """
 
-    def _init_(self, size):
+    def __init__(self, size):
         """
         Initialize the HashMap with a given size.
 
@@ -60,7 +60,7 @@ class HashMap:
             hash += ord(char)
         return hash % self.MAX_SIZE
 
-    def _setitem_(self, key, val):
+    def __setitem__(self, key, val):
         """
         Insert or update a key-value pair in the HashMap.
 
@@ -84,7 +84,7 @@ class HashMap:
         if not found:
             self.arr[hash].append((key, val))  # Insert new key-value pair
 
-    def _getitem_(self, key):
+    def __getitem__(self, key):
         """
         Retrieve the value associated with a given key.
 
@@ -113,7 +113,7 @@ class HashMap:
 # ===============================
 # DEMO USAGE
 # ===============================
-if _name_ == "_main_":
+if __name__ == "__main__":
     hashmap = HashMap(10)
     hashmap["title"] = "Vagabond"
     hashmap["author"] = "Takehiko Inoue"
