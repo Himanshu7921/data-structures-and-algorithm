@@ -108,6 +108,17 @@ class HashMap:
             if element[0] == key:
                 return element[1]
         raise KeyError(f"key '{key}' not found")
+    
+    def remove(self, key):
+        hash = self.get_hash(key)
+        bucket = self.arr[hash]
+
+        for idx, element in enumerate(bucket):
+            if len(element) == 2 and element[0] == key:
+                del bucket[idx]
+                return True
+        return False
+
 
 
 # ===============================
@@ -132,5 +143,10 @@ if __name__ == "__main__":
     print(f"Hash of 'year' = {hashmap.get_hash('year')}")
     print(f"Hash of 'paper' = {hashmap.get_hash('paper')}")
 
-    print("\nInternal HashMap Buckets:")
-    print(hashmap.arr)
+    print("Before removing:", hashmap.arr)
+
+    hashmap.remove("title") # Removing 'title' key from hashmap
+
+    print("After removing:", hashmap.arr)
+    
+    # print("Manga Title:", hashmap["title"]) # This will throw KeyError
