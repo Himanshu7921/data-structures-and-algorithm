@@ -90,7 +90,7 @@ class TreeNode:
 # ===============================
 # BINARY TREE CLASS
 # ===============================
-class BinaryTree:
+class BinarySearchTree:
     """
     BinaryTree represents a Binary Search Tree and provides utilities for
     insertion, traversal, building from list, and visual printing.
@@ -158,7 +158,7 @@ class BinaryTree:
 # ===============================
 if __name__ == "__main__":
     elements = [60, 70, 20, 40, 50, 60, 90, 15, 35, 100]
-    binarytree = BinaryTree(elements[0])
+    binarytree = BinarySearchTree(elements[0])
     binarytree.build_tree(elements)
     binarytree.print_tree()
     
